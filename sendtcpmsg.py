@@ -5,6 +5,9 @@ import urllib.request
 import urllib.response
 import os
 import select
+from shutil import copyfileobj
+from urllib.error import HTTPError
+from urllib.error import URLError
 
 def send_tcp_message(tcpaddress):
         TCP_IP = tcpaddress
@@ -98,7 +101,7 @@ def send_tcp_message(tcpaddress):
         #@TODO path :https://medium.com/@ageitgey/python-3-quick-tip-the-easy-way-to-deal-with-file-paths-on-windows-mac-and-linux-11a072b58d5f
         
         write_list=[s]
-        with open(downloadPath,'rb') as f:
+        with open(downloadpath,'rb') as f:
             #d=f.read(4096)
             #while d:
             #    s.send(d)
