@@ -110,7 +110,7 @@ def send_tcp_message(tcpaddress):
             readable, writable, errored = select.select([],write_list, [])   #check if reciving socket is ready
             for i in writable:
                 if i is s:
-                    print("file about to send..")
+                    print("file sending.....")
                     s.sendfile(f)   
         s.close()
         print("file send :::")

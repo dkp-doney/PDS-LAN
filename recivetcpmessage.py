@@ -51,4 +51,4 @@ class recive_tcp_message:
 
             for t in self.threads:
                 t.join()
-            merge.merge(self.sequence)
+            merge.merge(url,self.sequence)
