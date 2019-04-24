@@ -37,15 +37,15 @@ def send_tcp_message(tcpaddress):
         TCP_IP = tcpaddress
         TCP_PORT = 9001
         BUFFER_SIZE = 1024
-        msg="Reporting Client "
+        msg="Client "
         print(TCP_IP,TCP_PORT)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((TCP_IP,TCP_PORT))
         s.send(msg.encode())
         print("tcp conn from client send to server!!!")
-        msgg=s.recv(BUFFER_SIZE)
-        msg=msgg.decode()
-        print (msgg.decode())
+        #msgg=s.recv(BUFFER_SIZE)
+        #msg=msgg.decode()
+        #print (msgg.decode())
         url=s.recv(BUFFER_SIZE)
         print (url.decode())
         print(" \n")
@@ -56,7 +56,7 @@ def send_tcp_message(tcpaddress):
 
         x=byte.decode()  #this variable might by named x as param to range                                                             #check if recived as string NOT byte
         url=url.decode()
-        print(" aftr decode")
+        #print(" aftr decode")
         #req = urllib.request.Request(url, headers={'Range':x})
         #print("file downloading... plz wait")
         #data = urllib.request.urlopen(req).read()
@@ -77,13 +77,13 @@ def send_tcp_message(tcpaddress):
         #print("data write completed at client side and waiting for server...")
         #f.close()
         ###############
-        print(" aftr fol")
+        #print(" aftr fol")
         downloadname =str(url.split('/')[-1])#gives proper filename
         tempname=str(msg.split('-')[-1])
         downloadpath=downloadFolder+msg+downloadname
         print(downloadpath)
         req = urllib.request.Request(url, headers={'Range':x})
-        print(" aftr req")
+        #print(" aftr req")
         #while remaining_download_tries > 0 :
         print("starting download")
         try:
