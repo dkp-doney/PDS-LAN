@@ -43,26 +43,29 @@ def send_tcp_message(tcpaddress):
         s.connect((TCP_IP,TCP_PORT))
         s.send(msg.encode())
         print("tcp conn from client send to server!!!")
-        #msg=s.recv(BUFFER_SIZE)
-        #print (msg)
+        msgg=s.recv(BUFFER_SIZE)
+        msg=msgg.decode()
+        print (msgg.decode())
         url=s.recv(BUFFER_SIZE)
         print (url.decode())
+        print(" \n")
         byte=s.recv(BUFFER_SIZE)
-        print (byte)
+        print (byte.decode())
 
         #download starts here
 
         x=byte.decode()  #this variable might by named x as param to range                                                             #check if recived as string NOT byte
         url=url.decode()
+        print(" aftr decode")
         #req = urllib.request.Request(url, headers={'Range':x})
         #print("file downloading... plz wait")
         #data = urllib.request.urlopen(req).read()
         #print("file download complete!!!")
         #data.encode()
         #@TODO assign directory path for download
-        downloadFolder = "C://Project/parellel-download/"
-        if not (os.path.isdir("C://Project/parellel-download")):
-            os.makedirs("C://Project/parellel-download/")
+        downloadFolder = "C://Project/parellel-download-temp/"
+        if not (os.path.isdir("C://Project/parellel-download-temp")):
+            os.makedirs("C://Project/parellel-download-temp/")
         #downloadPath = downloadFolder + "/" + "temp_file"
         #f=open(downloadPath,'wb')
         #print("data is downloded in client side and is abt to write...")
@@ -74,11 +77,13 @@ def send_tcp_message(tcpaddress):
         #print("data write completed at client side and waiting for server...")
         #f.close()
         ###############
-
+        print(" aftr fol")
         downloadname =str(url.split('/')[-1])#gives proper filename
-        downloadpath=downloadFolder+downloadname
+        tempname=str(msg.split('-')[-1])
+        downloadpath=downloadFolder+msg+downloadname
         print(downloadpath)
         req = urllib.request.Request(url, headers={'Range':x})
+        print(" aftr req")
         #while remaining_download_tries > 0 :
         print("starting download")
         try:

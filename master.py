@@ -53,6 +53,8 @@ class recive_tcp_message:
                         
                         print("Got connection from client ",self.sequence, (ip,port))
                         self.list_of_param.append([ip,port,conn,self.sequence])
+                        
+
                     else:
                         pass
                             
@@ -123,19 +125,21 @@ class MasterThread(Thread):
         self.sequence = param[3]
         self.url = url[0]
         self.byte = url[1]
-        print(" New thread started for "+self.ip+":"+str(self.port))
+        print(" New thread started for client-"+str(self.sequence)+"  :"+self.ip+":"+str(self.port))
       
     def run(self):
          read_list = [self.sock]   
-         print("hello")
-         msg="hello client "+str(self.sequence)
-        # print(type(self.sock))
-         #self.sock.send(msg.encode())
-         print(self.url)
-         self.sock.send(self.url.encode())
-         print(self.byte)
-         self.sock.send(self.byte.encode())
+         #print("hello")
+         msg="Client-"+str(self.sequence)
          
+        # print(type(self.sock))
+         self.sock.send(msg.encode())
+         #print(msg)
+         #print(self.url)
+         self.sock.send(self.url.encode())
+         #print(self.byte)
+         self.sock.send(self.byte.encode())
+         print("download link send to"+str(self.sequence))
          def recvall(sock):
             BUFF_SIZE = 4096 # 4 KiB
             data = b''
